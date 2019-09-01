@@ -1,2 +1,2 @@
 1/9/19 - start commit
-git request-pull ad1 https://git.ko.xz/project master:ad2
+git request-pull ad1 https://github.com/dhaneshpawar/hrms master:ad2
