@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="jquery-3.2.1.min.js"></script>
+
+    <script src="js/materialize.js"></script>
+    <script src="js/materialize.min.js"></script>
+
+</head>
+<body>
+
+
+              <nav>
+                    <div class="nav-wrapper blue darken-1">
+                      <a href="#!" class="brand-logo center">Thyssenkrupp</a>
+                     </div>
+                  </nav>
+
+                  <br><br>
+    
+                      <div class="row">
+    
+            
+
+                        <div class="col m6 offset-m3" >
+    <center>                            <div id="invalidlogin"></div></center>
+
+                            <div class="card">
+                            
+                                    <div class="card blue darken-1">
+                                            <div class="card-content white-text">
+                                              <span class="card-title center" style="font-weight: 500;"> Login</span>
+                                            </div>
+                                          </div>
+            
+                                <div class="card-content white-text">
+                                    
+                                                      <div class="row">
+                                                        <div class="input-field col s8 offset-s2 blue-text">
+                                                          <i class="material-icons prefix">account_circle</i>
+                                                          <input id="userid" type="text" class="validate" placeholder="User Id">
+                                                          
+                                                        </div>
+
+                                                        <div class="input-field col s8 offset-s2 blue-text">
+                                                          <i class="material-icons prefix">lock</i>
+                                                          <input id="pwd" type="password" class="validate" placeholder="Password">
+                                                        
+                                                </div>
+
+                                                <div class="input-field col s6 offset-s3 center">
+                                                        <button class="btn waves-effect waves-light blue darken-1" id="submit" name="action">Submit
+                                                                <i class="material-icons right">send</i>
+                                                              </button>
+                                                      </div>
+
+
+                                                            
+                                                      </div>
+
+                                            </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          
+
+                          <script>
+
+                            $('#submit').click(function(){
+
+                              var id =  $('#userid').val();
+                              var pwd =  $('#pwd').val();
+                              var data = {'uid':id,'pwd':pwd}
+                              console.log(data)
+
+                            
+
+                              $.ajax({
+                                    url : 'http://localhost/thyssenkrup/merging/login.php',
+                                    type : 'POST',
+                                     data : {"userid":id,"pwd":pwd},
+                                    success : function(para)
+                                    {
+
+                                      var errtxt = '<p style="color: red">Invalid Login Details..!!</p>'
+                                        
+                                      var result = "http://localhost/thyssenkrup/merging/"+para+".html"
+                                      if(para != "404" )
+                                      {
+                                        document.location.replace(result)
+                                      }
+                                      else
+                                      {
+                                        var errtxt = '<p style="color: red">Invalid Login Details..!!</p>'
+                                        $('#invalidlogin').append(errtxt)
+                                      }
+                        
+                                    },
+
+                                    error : function(err){
+                                      
+                                    }
+
+
+                                  });
+                            });
+                          
+                          
+                          </script>
+                               
+</body>
+</html>
